@@ -1,18 +1,26 @@
 # android
+
 - [android](#android)
   - [caracetrísticas](#caracetrísticas)
   - [Android Studio vs. IntelliJ IDEA](#android-studio-vs-intellij-idea)
   - [Crear proyecto Compose](#crear-proyecto-compose)
+    - [Creación de un Proyecto en Android Studio con Compose.](#creación-de-un-proyecto-en-android-studio-con-compose)
   - [Ejemplo](#ejemplo)
-  - [preview](#preview)
+  - [Preview](#preview)
   - [Explicación del código:](#explicación-del-código)
   - [organizar el código](#organizar-el-código)
   - [Diseñando la vista de nuestra app](#diseñando-la-vista-de-nuestra-app)
-    - [Agregando características](#agregando-características)
   - [Diseño horizontal](#diseño-horizontal)
+    - [Mostrar un icon](#mostrar-un-icon)
+      - [Descargar el icon](#descargar-el-icon)
+      - [Agregar a Android](#agregar-a-android)
+    - [Usar el icono en el código:](#usar-el-icono-en-el-código)
+    - [Mostrar horizontalmente](#mostrar-horizontalmente)
+    - [Centrar el icono verticalmente](#centrar-el-icono-verticalmente)
+  - [Estilos de texto](#estilos-de-texto)
+  - [Modifier](#modifier)
+  - [Mostrar la lista](#mostrar-la-lista)
   - [Descarga](#descarga)
-
-
 
 Android Studio es el entorno de desarrollo integrado oficial para crear aplicaciones Android . Reúne todas las herramientas que un desarrollador de apps necesita en un solo lugar. Android Studio está basado en el potente software IntelliJ IDEA de JetBrains, pero ha sido modificado y mejorado por Google específicamente para el desarrollo de Android . Fue anunciado en 2013 y lanzado oficialmente en 2014, reemplazando a Eclipse como el IDE oficial para este propósito
 
@@ -30,45 +38,43 @@ Android Studio es el entorno de desarrollo integrado oficial para crear aplicaci
 
 ## Android Studio vs. IntelliJ IDEA
 
+| Característica          | Android Studio                                                                                                                           | IntelliJ IDEA (Community)                                                                                                      |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Enfoque Principal       | Desarrollo de apps para Android (móviles, tablets, wearables, TV) .                                                                      | Desarrollo general para JVM (Kotlin, Java, backend, aplicaciones de escritorio).                                               |
+| Creador / Soporte       | Desarrollado por Google (sobre la base de IntelliJ) .                                                                                    | Desarrollado por JetBrains (los creadores de Kotlin).                                                                          |
+| Herramientas Exclusivas | Emulador de Android, editores de diseño de layouts (XML y Compose), herramientas específicas de Google Play (firmado, análisis de APK) . | Soporte superior para desarrollo web, frameworks de backend (Spring, Ktor), bases de datos y herramientas de diagramación UML. |
+| ¿Cuál elegir?           | Es la elección obligatoria si quieres crear apps para Android .                                                                          | Es la mejor opción si quieres aprender Kotlin para backend, scripts de consola o aplicaciones de escritorio multiplataforma .  |
 
-|Característica	|Android Studio	|IntelliJ IDEA (Community)|
-|---------------|---------------|-------------------------|
-|Enfoque Principal	|Desarrollo de apps para Android (móviles, tablets, wearables, TV) .	|Desarrollo general para JVM (Kotlin, Java, backend, aplicaciones de escritorio).|
-|Creador / Soporte	|Desarrollado por Google (sobre la base de IntelliJ) .	|Desarrollado por JetBrains (los creadores de Kotlin).|
-|Herramientas Exclusivas	|Emulador de Android, editores de diseño de layouts (XML y Compose), herramientas específicas de Google Play (firmado, análisis de APK) .	|Soporte superior para desarrollo web, frameworks de backend (Spring, Ktor), bases de datos y herramientas de diagramación UML.|
-
-¿Cuál elegir?	Es la elección obligatoria si quieres crear apps para Android .	Es la mejor opción si quieres aprender Kotlin para backend, scripts de consola o aplicaciones de escritorio multiplataforma .
 En resumen, todo lo que puedes hacer en Android Studio está basado en IntelliJ IDEA . Son "hermanos", pero cada uno está especializado en un tipo de proyecto.
 
 ## Crear proyecto Compose
 
-Jetpack Compose es el kit de herramientas moderno de Google para crear interfaces de usuario (UI) en Android usando solo código Kotlin, sin necesidad de XML. Es un cambio radical respecto a la forma tradicional de hacer interfaces en Android.
+**JetPackCompose** es el kit de herramientas moderno de Google para crear interfaces de usuario (UI) en Android usando solo código Kotlin, sin necesidad de XML. Es un cambio radical respecto a la forma tradicional de hacer interfaces en Android.
 
-Creación de un Proyecto en Android Studio con Compose.
+### Creación de un Proyecto en Android Studio con Compose.
 
 1. Al abrir Android Studio, selecciona **New Project** .
-2. Para que elijas una plantilla para tu primera pantalla. Se abrirá una ventana con varias opciones. Aquí debes seleccionar la pestaña "Phone and Tablet" y luego elegir la plantilla **Empty Activity** . Esta plantilla es la más recomendada para empezar con Compose. Crea un proyecto simple con una sola pantalla y todo lo necesario para que veas tu primer "Hola Mundo" funcionando
+2. Se abrirá una ventana con varias opciones. Aquí debes seleccionar la pestaña **Phone and Tablet** y luego elegir la plantilla **Empty Activity** . Esta plantilla es la más recomendada para empezar con Compose. Crea un proyecto simple con una sola pantalla y todo lo necesario para que veas tu primer "Hola Mundo" funcionando.
 3. Configura tu proyecto: En la siguiente pantalla, completa los detalles de tu app. Los más importantes son:
-    * *Name*: El nombre de tu aplicación (por ejemplo, "MiPrimeraAppCompose").
-    * *Package name*: El identificador único de tu app (suele ser algo como com.tunombre.miprimeraappcompose).
-    * *Save location*: La carpeta donde se guardará el proyecto.
-    * *Language*: Asegúrate de que esté seleccionado Kotlin. Es el único lenguaje compatible con Compose.
-    * *Minimum SDK*: Selecciona API 24: Android 7.0 (Nougat) o una versión posterior. Esto define la versión más antigua de Android en la que funcionará tu app.
-    * *Use Jetpack Compose U*I: Asegúrate de que esta casilla esté marcada. ¡Esto es crucial! Activa todas las configuraciones necesarias para usar Compose.
-4. Haz clic en **Finish**. *Android Studio* generará toda la estructura de carpetas y archivos y sincronizará el proyecto con Gradle automáticamente.
+   * *Name*: El nombre de tu aplicación (por ejemplo, "MiPrimeraAppCompose").
+   * *Package name*: El identificador único de tu app (suele ser algo como com.tunombre.miprimeraappcompose).
+   * *Save location*: La carpeta donde se guardará el proyecto.
+   * *Language*: Asegúrate de que esté seleccionado Kotlin. Es el único lenguaje compatible con Compose.
+   * *Minimum SDK*: Selecciona API 24: Android 7.0 (Nougat) o una versión posterior. Esto define la versión más antigua de Android en la que funcionará tu app.
+   * *Use Jetpack Compose U*I: Asegúrate de que esta casilla esté marcada. ¡Esto es crucial! Activa todas las configuraciones necesarias para usar Compose.
+4. Haz clic en **Finish**. *Android Studio* generará toda la estructura de carpetas y archivos y sincronizará el proyecto con Gradle (**sistema de construcción [build system]** que usa Android Studio para compilar, empaquetar y gestionar tu aplicación) automáticamente.
 
 Breve descripción de los archivos:
 
 **Gradle Scrpts** es un archivo de configuración, si abres **build.gradle.kts** veras, en *plugings* los módulos importados, en *android* la descripción de proyecto.
 
-**app/kotlin+java/com.sunombre.suproyecto/ui.theme** contiene los estilos de compose.
+**app/(kotlin+java)/com.sunombre.suproyecto/ui.theme** contiene los estilos de compose.
 
-**app/kotlin+java**/MainActivity es el código principal.
-
+**app/(kotlin+java)/MainActivity** es el código principal.
 
 ## Ejemplo
 
-Crear una aplicacción movil con *Jetpack compose*. *Jetpack Compose* es el kit de herramientas moderno de Android para construir interfaces de usuario (UI) de forma declarativa utilizando código Kotlin. Fue lanzado por Google para reemplazar el sistema tradicional de vistas basado en XML (como LinearLayout, TextView, Button, etc.). Ejemplo: en lugar de decir cómo construir la UI paso a paso (imperativo), con Compose declaras cómo debe verse la UI según el estado actual de los datos. Ejemplo:
+Crear una aplicacción movil con *Jetpack compose*.  Jetpack Compose es el kit de herramientas moderno de Android para construir interfaces de usuario (UI) de forma declarativa utilizando código Kotlin. Fue lanzado por Google para reemplazar el sistema tradicional de vistas basado en XML (como LinearLayout, TextView, Button, etc.). Por ejemplo: en lugar de decir cómo construir la UI paso a paso (imperativo), con Compose declaras cómo debe verse la UI según el estado actual de los datos. Ejemplo:
 
 * Antes `findViewById<TextView>(R.id.texto).text = "Hola"` 
 * Ahora: `Text("Hola")`
@@ -80,59 +86,95 @@ La Interfaz de la app será la siguiente:
 
 **Inicio**
 
-Si aunn no has creado un proyecto Compose, sigue los pasos 1 y 2, en caso contrario ve al paso 3.
+Si aun no has creado un proyecto Compose, sigue los pasos 1 y 2, en caso contrario ve al paso 3.
 
 1. Crea un nuevo proyecto 
-    * file/new proyect/ 
-    * elige la plantilla `empty activity`
-    * elige nombre del **Package name** por ejemplo `myapp-jetp-1`
-    * en **Build configuration language** elegir **kotlin** 
-    * en **minimun sdk** versión mínima de **Android** donde correra tu app.
-    * da clic en `next`.
-2. revisa el archivo `/src/MainActivity.kt` es el equivalente al `main()` en lenguaje C.
+   
+   * file/new proyect/ 
+   * elige la plantilla `empty activity`
+   * elige nombre del **Package name** por ejemplo `myapp-jetp-1`
+   * en **Build configuration language** elegir **kotlin** 
+   * en **minimun sdk** selecciona la versión mínima de **Android** donde correrá tu app.
+   * da clic en `next`.
+
+2. Revisa el archivo `/src/MainActivity.kt` es el equivalente al `main()` en lenguaje C.
+
 3. Ubica una api fake: [Api fake](https://restful-api.dev/)
-4. elige [all](https://api.restful-api.dev/objects)
-5. crea una clase para almacenar los datos:
-   1. colocate en el paquete principal: **com.tunombre.suproyecto** haz clic derecho/new/(kotlin class/file)
+
+4. Elige en la prstaña public la liga [Get](https://api.restful-api.dev/objects)
+
+5. Crea una clase para almacenar los datos:
+   
+   1. colocate en el paquete principal: **com.tunombre.tuproyecto** haz clic derecho/new/(kotlin class/file)
+   
    2. elije **data class**
+   
    3. ponle como nombre *Device*
+   
    4. ponle las propiedades:
-   ```kotlin
-   data class Device(
+      
+      ```kotlin
+      data class Device(
         val id: Long,
         val name: String,
         val data: Specs?
-    )
-   ```
-   5. observa que data hace referencia a Specs (especificaciones del objeto como color y capacidad [observa los datos]), por tanto necesitamos crear un nuevo *class data* que llamaremos *Specs*, construyela creando un archivo *Specs* similar a coo lo hciste con el *class data* *Device* ponle los compos:
-   ```kotlin
-   data class Specs(
+      )
+      ```
+   
+   5. observa que data hace referencia a Specs (especificaciones del objeto como color y capacidad [observa los datos]), por tanto necesitamos crear un nuevo *class data* que llamaremos *Specs*, construyela creando un archivo *Specs* similar a como lo hciste con el *class data* *Device* ponle los compos:
+      
+      ```kotlin
+      data class Specs(
         val color: String?,
         val capacity: String?
-    )
-   ```
-  
+      )
+      ```
 
-   >Nota Una **Data Class** es una clase especial en Kotlin diseñada exclusivamente para almacenar datos. Automáticamente genera código útil como equals(), hashCode(), toString(), copy(), y los métodos de componente para destructuración.
+> Nota Una **Data Class** es una clase especial en Kotlin diseñada exclusivamente para almacenar datos. Automáticamente genera código útil como equals(), hashCode(), toString(), copy(), y los métodos de componente para destructuración.
 
-    6. Revisa el código
+6. Revisando el código
 
 Observa en el archivo `Main.activity` que tenemos 3 cosas:
+
 * Una actividad (la clase MainActivity)
 * la funcion composable para la vista (Greeting)
 * la previsualizacion (GreetingPreview)
-  
+
 La clase hereda de `ComponentActivity`. Una Activity es un componente fundamental de una aplicación Android que representa una pantalla con la que el usuario puede interactuar.
 
-La función `fun onCreate()` se ejecuta al crear la actividad, dentro puede ver `setContent {}` que es una sentencia del Jetpack Compose que añade la interfaz gráfica a la actividad. `DeviceTheme{}` define el tema, es tomado de Material design.
+La función `fun onCreate()` se ejecuta al crear la actividad, dentro puede ver `setContent {}` que es una sentencia del *Jetpack Compose* que añade la interfaz gráfica a la actividad. `DeviceTheme{}` define el tema, es tomado de Material design.
 
 `scaffold{}` es el contenedor principal de la interfaz.
 
-dentro se llama a la función `Greeting(name = "Android", modifier = Modifier.padding(innerPadding))`. Las vistas en Jetpack compose se construyen a partir de funciones kotlin marcadas con `@Composable` y se deben escribir en Pascal Case.
+dentro se llama a la función `Greeting(name = "Android", modifier = Modifier.padding(innerPadding))`. 
+
+Los parámetrosque se estan usando en el llamado a la funcion Greeting() son parametros nombrados que mejoran la legibilidad y permiten cambiar el orden de los parámetros en el llamado.
+
+Las vistas en **Jetpack compose** se construyen a partir de funciones kotlin marcadas con `@Composable` y se deben escribir en Pascal Case.
 
 El parámetro `modifier`: Un Modifier es un objeto que modifica el comportamiento y apariencia de un componente de Compose. Puedes encadenar múltiples modificaciones.
 
+
+
+Ejemplo:
+
+Centrar texto en una columna:
+
+```kotlin
+@Composable
+fun TextoCentradoEnColumn() {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally  // ← Centra horizontalmente
+    ) {
+        Text("Texto centrado horizontalmente")
+        Text("Otro texto también centrado")
+    }
+}
+```
+
 Ejemplo de uso de modifier encadenado:
+
 ```kotlin
 Greeting(
     name = "María",
@@ -145,6 +187,7 @@ Greeting(
 ```
 
 en la función `Greeting` tenemos un componente:
+
 ```kotlin
     Text(
         text = "Hello $name!",
@@ -152,9 +195,9 @@ en la función `Greeting` tenemos un componente:
     )
 ```
 
-   >Nota Un componente de Android es un bloque de construcción fundamental de una aplicación Android. Cada componente tiene un propósito específico y un ciclo de vida propio, y pueden activarse de diferentes maneras (por el usuario, el sistema u otros componentes).
+> Nota Un componente de Android es un bloque de construcción fundamental de una aplicación Android. Cada componente tiene un propósito específico y un ciclo de vida propio, y pueden activarse de diferentes maneras (por el usuario, el sistema u otros componentes).
 
-## preview
+## Preview
 
 Para empezar una previsualización, selecciona en la parte superior derecha el ícono *split*, esto habilita una ventana de previsualización.
 
@@ -169,21 +212,23 @@ fun GreetingPreview() {
     }
 }
 ```
+
 Es una vista previa en tiempo real de tu interfaz de usuario sin necesidad de ejecutar la app en un emulador o dispositivo físico. Es una característica de Jetpack Compose (el toolkit moderno de UI para Android).
 En este caso previsualiza el componente *Greeting*
 
 Desglose de cada parte:
 
-|Elemento	|Función|
-|-----------|-------|
-|@Preview	|Le dice a Android Studio / IntelliJ que esta función es una "vista previa" que debe mostrarse en una ventana lateral|
-|showBackground = true	|Muestra un fondo detrás de tu UI (útil para ver bordes blancos sobre fondo oscuro)|
-|showSystemUi = true	|Muestra la barra de estado y la barra de navegación del teléfono (hora, batería, botones virtuales)|
-|@Composable	|Indica que esta función define una parte de la UI (la unidad básica de Jetpack Compose)|
-|Myappjetp1Theme	|Aplica el tema visual de tu app (colores, tipografías, formas)|
-|Greeting(...)	|El componente real que estás previsualizando|
+| Elemento              | Función                                                                                                              |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| @Preview              | Le dice a Android Studio / IntelliJ que esta función es una "vista previa" que debe mostrarse en una ventana lateral |
+| showBackground = true | Muestra un fondo detrás de tu UI (útil para ver bordes blancos sobre fondo oscuro)                                   |
+| showSystemUi = true   | Muestra la barra de estado y la barra de navegación del teléfono (hora, batería, botones virtuales)                  |
+| @Composable           | Indica que esta función define una parte de la UI (la unidad básica de Jetpack Compose)                              |
+| Myappjetp1Theme       | Aplica el tema visual de tu app (colores, tipografías, formas)                                                       |
+| Greeting(...)         | El componente real que estás previsualizando                                                                         |
 
 Resultado:
+
 ```text
 ┌─────────────────────────┐
 │ 9:41                    │  ← barra estado (por showSystemUi)
@@ -202,6 +247,7 @@ Resultado:
 ```kotlin
 fun GreetingPreview() {}
 ```
+
 * Es una función normal de Kotlin
 * El nombre puede ser cualquiera, pero por convención se usa [NombreComponente]Preview
 * No recibe parámetros ni devuelve nada
@@ -209,6 +255,7 @@ fun GreetingPreview() {}
 ```kotlin
     Myappjetp1Theme {}
 ```
+
 * Aplica el tema visual de tu app (colores, tipografías, formas, espaciados)
 * Sin esto, verías los colores "por defecto" del sistema, no los que diseñaste para tu app
 * El nombre Myappjetp1Theme suele venir del archivo Theme.kt que genera Android Studio automáticamente
@@ -226,6 +273,7 @@ En el archivo `MainActivity.kt` dejaremos solo la clase y la vista y la previsua
 En la carpeta donde esta el *MainActivity* creamos un nuevo archivo llamado *MainScreen*, dando clic derecho en el nombre de la carpeta/new file/(kotlin class/file)/ file, ponga el nombre *MainScreen*
 
 mueva ahi el código:
+
 ```kotlin
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
@@ -249,12 +297,15 @@ fun GreetingPreview() {
 Crearemos la vista de un solo dispositivo.
 
 1. crear un nuevo archivo kotlin llamado *DeviceItem*
+
 2. agregue el código:
-```kotlin
-@Composable
-fun DeviceView(device: Device){
+   
+   ```kotlin
+   @Composable
+   fun DeviceView(device: Device){
     Text(text = device.name)
-}
+   }
+   ```
 
 @Preview(showBackground = true)
 @Composable
@@ -263,8 +314,8 @@ fun DeviceItemPreview(){
         DeviceView(device = Device(id = 1, name= "Nexus", Specs(color = "White", capacity = "64gb")))
     }
 }
-```
 
+```
 Y muestre su previsualización
 
 ### Agregando características
@@ -285,6 +336,7 @@ fun DeviceView(device: Device){
 Observe la sentencia: `column{}` indica que los elementos se ubicarán en el lienzo en forma de columna.
 
 La expresión: `device.data?.color ?: "-"` 
+
 * Si device.data existe → sigue adelante a .color
 * Si device.data es null → todo esto se convierte en null
 
@@ -293,8 +345,239 @@ Significado: Si lo de la izquierda es null, usa lo de la derecha.
 
 ## Diseño horizontal
 
-clase del jueves.
+Queremos mostrar un ícono de telefono al lado derecho y al lado izquierdo los datos del teléfono, para esto necesitamos organizar los datos en un renglón con 2 columnas:
 
+```text
+┌─────────────────────────┐
+│                         │
+│   📞    Samsung Galaxy  │
+│         RAM: 512 GB     │
+│         Color: Blanco   │
+│                         │
+└─────────────────────────┘
+```
+
+Iconos. En compose disponemos de un conjunto de iconos que podemos mostrar así:
+`Icon(imageVector = Icons.Default.Phone)`
+
+### Mostrar un icon
+
+#### Descargar el icon
+
+1. [descara icono, ve a:](https://fonts.google.com/icons)
+2. En la barra de búsqueda, escribe "phone android" o simplemente "phone"
+3. Selecciona el icono que más te guste. Tienes variantes como:
+   * Phone Android (icono de teléfono con la silueta de Android)
+   * Phone Enabled (icono genérico de teléfono)
+   * Call (auricular clásico)
+4. Bajalo como `SVG`
+
+#### Agregar a Android
+
+Una vez descargado , tendrás un archivo ic_phone_android_24dp.svg o similar.
+
+1. En Android Studio, haz clic derecho en la carpeta res → New → Vector Asset
+2. En la ventana que aparece, selecciona "Local file (SVG, PSD)"
+3. Haz clic en el botón ... y busca el archivo SVG que descargaste
+4. Verás una previsualización del icono. Si aparece algún error, el SVG no es compatible
+5. Puedes cambiar el nombre del recurso si lo deseas (**en nuestro caso ponle el nombre: phone24**)
+6. Haz clic en "Next" y luego en "Finish"
+
+### Usar el icono en el código:
+
+```kotlin
+import androidx.compose.ui.res.painterResource //agregar si no la impora automáticamente
+import androidx.compose.ui.unit.dp //lo mismo
+
+@Composable
+fun DeviceView(device: Device){
+    Column {
+        Icon(
+            painter = painterResource ( id = R.drawable.phone24 ),
+            contentDescription = "telefono",
+            modifier = Modifier.size(24.dp)//.size(24.dp), // Ajusta el tamaño
+        )
+        Text(text = device.name)
+        Text(text = device.data?.color ?: "-")
+        Text(text = device.data?.capacity ?: "-")
+    }
+
+
+}
+```
+
+### Mostrar horizontalmente
+
+Como queremos que el icono este al lado izquierdo, necesitamos un contenedor horizontal, modifique su código así:
+
+```kotlin
+@Composable
+fun DeviceView(device: Device){
+    Row() {
+        Icon(
+            painter = painterResource ( id = R.drawable.phone24 ),
+            contentDescription = "telefono",
+            modifier = Modifier.size(24.dp)//.size(24.dp), // Ajusta el tamaño
+        )
+        Column {
+
+            Text(text = device.name)
+            Text(text = device.data?.color ?: "-")
+            Text(text = device.data?.capacity ?: "-")
+        }
+
+    }
+}
+```
+
+### Centrar el icono verticalmente
+
+al contenedor Row, agregue:
+
+```kotlin
+Row(verticalAlignment = Alignment.CenterVertically)
+```
+
+## Estilos de texto
+
+Modificamos el estilo de texto agregando un estilo en el código dentro de `Column{}`
+```kotlin
+        Column {
+
+            Text(
+                text = device.name,
+                style = Typography.headlineMedium
+            )
+            Text(
+                text = device.data?.color ?: "-",
+                style = Typography.bodyMedium
+            )
+            Text(
+                text = device.data?.capacity ?: "-",
+                style = Typography.bodyMedium
+            )
+        }
+```
+
+## Modifier
+
+En el archivo: `MainScreen.kt` modifica lo siguiente, en la función Greeting:
+
+```kotlin
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Elije $name!",
+        modifier = modifier.fillMaxWidth(),
+        style = Typography.displayMedium,
+        textAlign = TextAlign.Center
+    )
+}
+```
+Observa que antes em modifier era solo `modifier = modifier` ahora lo pusimos para que el letreto abarque todo el ancho y ademas lo sentramos con: `textAlign = TextAlign.Center`
+
+Como ejemplo modifica la línea: `modifier = modifier.background(Color.Red).padding(all = 10.dp).fillMaxWidth())` para que veas el resultado. El orden en que se aplican las propiedades al modificador si importa.
+
+En el archivo `DeviceItem.kt` actualiza el modifier dl icono:
+```kotlin
+modifier = Modifier.size(84.dp).padding(start = 16.dp, end = 16.dp)
+```
+Obseva la diferencia.
+La linea anterior es equivalente a:
+```kotlin
+modifier = Modifier.size(84.dp).padding(horizontal = 16.dp)
+```
+
+Las opciones son:*top, bottom, vertical, all*
+
+## Mostrar la lista
+
+En el archivo `MainScreen.kt` tenemos:
+```kotlin
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Text(
+        text = "Elije $name!",
+        modifier = modifier.background(Color.Red).padding(all = 10.dp).fillMaxWidth(),
+        style = Typography.displayMedium,
+        textAlign = TextAlign.Center
+    )
+}
+```
+
+Modifiquemos su código 
+Agregando:
+* ` devices : List<Device>` como parámetro en *fun Greting*
+* Agregue una columna en Greting con los renglones Text y LazyColumn
+* Modifique el *GretingPreview()* para enviar una lista de datos
+
+se verá así:
+```kotlin
+@Composable
+fun Greeting(name: String, modifier: Modifier = Modifier, devices : List<Device>) {
+    Column() {
+        Text(
+            text = "Selecciona",
+            modifier = modifier.background(Color.Red).padding(all = 10.dp).fillMaxWidth(),
+            style = Typography.displayMedium,
+            textAlign = TextAlign.Center
+        )
+        LazyColumn() {
+            items(devices.size){ index ->
+                DeviceView(device = devices[index])
+            }
+        }
+    }
+
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun GreetingPreview() {
+    Myappjetp1Theme {
+        Greeting("Android", modifier = Modifier.padding(top = 24.dp), devices = listOf(
+            Device(id = 1, name= "Nexus", Specs(color = "White", capacity = "64gb")),
+            Device(id = 2, name= "Samsung", Specs(color = "Black", capacity = "32gb"))
+        ))
+    }
+}
+```
+
+En el archivo `MainActivity.kt` agregue:
+```kotlin
+devices = listOf(
+        Device(id = 1, name= "Nexus", Specs(color = "White", capacity = "64gb")),
+        Device(id = 2, name= "Samsung", Specs(color = "Black", capacity = "32gb"))
+)
+```
+Como argumento en el llamado a Greeting()
+
+así:
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            Myappjetp1Theme {
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                    Greeting(
+                        name = "Phone",
+                        modifier = Modifier.padding(innerPadding),
+                        devices = listOf(
+                            Device(id = 1, name= "Nexus", Specs(color = "White", capacity = "64gb")),
+                            Device(id = 2, name= "Samsung", Specs(color = "Black", capacity = "32gb"))
+                        )
+                    )
+                }
+            }
+        }
+    }
+}
+```
+
+>Nota LazyColumn es el equivalente moderno de RecyclerView en XML, pero mucho más simple y poderoso. Es un componente que muestra listas scrollables de manera eficiente, cargando solo los elementos visibles en pantalla.
 
 ## Descarga
 
